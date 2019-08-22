@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  */
@@ -38,9 +39,14 @@ class Produit
     private $reference;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $dateAjout;
+
+    public function __construct()
+    {
+       $this->dateAjout = new \DateTime();
+    }
 
     public function getId(): ?int
     {
