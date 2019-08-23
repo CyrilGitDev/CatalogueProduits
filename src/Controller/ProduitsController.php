@@ -3,24 +3,46 @@
 
 namespace App\Controller;
 
+use App\Controller\ProduitsController;
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+//use App\Controller\ObjectManager;
 use App\Entity\Marque;
 use App\Entity\Produit;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class ProduitsController extends AbstractController
 {
 
-/**
- * @Route("/biens", name="produits")
- * @return Response
-**/
+    /*charger avec wiring dans un constructeur*/
+    /**
+     *  @var ProduitRepository
+     */
+    private $repo;
+    /**
+     *  @var ObjectManager
+     */
+    private $manager;
+    
+    public function __construct(ProduitRepository $repo,ObjectManager $manager )
+    {
+        $this->repo = $repo;
+        $this->manager = $manager;
+    }
 
+
+    /**
+     * @Route("/biens", name="produits")
+     * @return Response
+    **/
+
+    /*wiring directement dans l'index*/
     public function index(): Response
     {
 
-        $marque1 = new Marque();
+        /*$marque1 = new Marque();
         $marque1->setNom("Yamu");
 
         $produit = new Produit();
@@ -36,8 +58,18 @@ class ProduitsController extends AbstractController
         $entityManager->persist($marque1);
         $entityManager->persist($produit);
 
-        $entityManager->flush();
+        $entityManager->flush();*/
 
+        /* charger repository sans wiring
+        $repo = $this->getDoctrine()->getRepository(Produit::class); 
+        dump($repo);*/
+       
+        /*edit valeur de produit ds la base 
+        $produit = $this -> repo->findAll();
+        //dump($produit);
+       
+       /* $produit[0]->setPrix(15.2);
+        $this->manager->flush();*/
         return $this->render('produits/index.html.twig', [
             'current_menu' => 'produits'
         ]);

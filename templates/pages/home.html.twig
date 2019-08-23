@@ -11,4 +11,23 @@
     </div>
     <div class="container">
     </div>
+
+    <div class ="container">
+
+        <h2> liste des produits </h2>
+        <div class = "row flex">
+            {% for produit in produits %}
+                <div class ="col-3">
+                    <div class ="card">
+                        <div class ="card-body">
+                            <h5 class ="card-title">
+                                <a href="#">{{ produit.nom}}</a>
+                            </h5>
+                            <p class="card-text"> {{produit.prix}}€ </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
 {% endblock %}
