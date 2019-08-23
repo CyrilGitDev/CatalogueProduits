@@ -23,7 +23,9 @@
                             <h5 class ="card-title">
                                 <a href="#">{{ produit.nom}}</a>
                             </h5>
-                            <p class="card-text"> {{produit.prix}}€ </p>
+                            <h1 class="card-text"> {{produit.prix}}€ </h1>
+                            <p class="card-text"> marque: {{produit.marque.nom}} </p>
+                            <p class="card-text"> date d'ajout: {{produit.dateAjout|date('Y-m-d')}} </p>
                         </div>
                     </div>
                 </div>
