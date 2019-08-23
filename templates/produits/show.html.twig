@@ -5,9 +5,9 @@
 {% block body %}
     <div class="jumbotron text-center">
 
-        <h1> Annonce produit </h1>
+        <h1> Annonce du produit: {{ produit.nom}} </h1>
 
-        <p> annonce de diferent produit </p>
+       
     </div>
     <div class="container">
     </div>
@@ -16,20 +16,13 @@
 
         <h2> liste des produits </h2>
         <div class = "row flex">
-            {% for produit in produits %}
-                <div class ="col-3">
-                    <div class ="card">
-                        <div class ="card-body">
-                            <h5 class ="card-title">
-                                <a href="{{ path('produit.show', {id: produit.id, slug: produit.slug}) }}">{{ produit.nom}}</a>
-                            </h5>
+            <div class ="card-body">
+                            
                             <h1 class="card-text" style="font-weight: bold;"> {{produit.prix}}€ </h1>
                             <p class="card-text"> marque: {{produit.marque.nom}} </p>
                             <p class="card-text"> date d'ajout: {{produit.dateAjout|date('Y-m-d')}} </p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor%}
+            </div>
         </div>
     </div>
+    
 {% endblock %}

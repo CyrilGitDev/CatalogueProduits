@@ -75,4 +75,17 @@ class ProduitsController extends AbstractController
         ]);
     }
 
+
+     /**
+     * @Route("/biens/{slug}-{id}", name="produit.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @return Response
+    **/
+    public function show($slug, $id): Response
+    {
+        $produit = $this->repo->find($id);
+        return $this->render('produits/show.html.twig', [
+            'produit' => $produit,
+            'current_menu' => 'produits'
+        ]);
+    }
 }
