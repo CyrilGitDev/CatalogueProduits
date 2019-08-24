@@ -70,7 +70,7 @@ class ProduitsController extends AbstractController
        
        /* $produit[0]->setPrix(15.2);
         $this->manager->flush();*/
-        return $this->render('produits/index.html.twig', [
+        return $this->render('index.html.twig', [
             'current_menu' => 'produits'
         ]);
     }

@@ -1,12 +1,49 @@
 {% extends 'base.html.twig' %}
-{% block title 'voir toutes les annonces' %}
+{% block title 'gerer les produits' %}
+
 {% block body %}
-    <div class="container">
+    
+    <div class="container mt-4">
 
-        <h1> voir tous les produits</h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+          {{message}}  
+        </div>
+    {%endfor%}
 
-        <p> annonce de diferent produit </p>
-    </div>
-    <div class="container">
+    
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+  
+        
+        {% for produit in produits %}
+            <tr>
+            <td>{{ produit.nom}}</td>
+            <td>
+            <a href="{{path('admin.produit.edit', {id: produit.id}) }}" class ="btn btn-primary">Editer</a>
+
+            <form method="post" action="{{path('admin.produit.delete',{id: produit.id}) }}" style="display: inline-block">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-danger"> Supprimer</button>
+            </form>
+            </td>
+        </tr>
+        {% endfor%}
+        
+        </tbody>   
+    
+    
+    </table>
+
+    <div class="text-right">
+     <a href="{{path('admin.produit.new') }}" class ="btn btn-primary">Céer un nouveau produit</a>
+     </div>
+
     </div>
 {% endblock %}
