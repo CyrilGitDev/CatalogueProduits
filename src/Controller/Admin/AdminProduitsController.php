@@ -99,4 +99,18 @@ class AdminProduitsController extends AbstractController
         //return new Response('suprresion');
         return $this->redirectToRoute('admin.produit.index');
     }
+
+
+    /**
+     * @Route("/admin", name="adminPage")
+     * @return Response
+    **/
+
+    /*wiring directement dans l'index*/
+    public function adminPage(): Response
+    {
+        return $this->render('produits/index.html.twig', [
+            'current_menu' => 'produits'
+        ]);
+    }
 }
