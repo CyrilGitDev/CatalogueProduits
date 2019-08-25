@@ -1,2 +1,2 @@
-Creation suppression et edition de produit possible accessible via l'url suivie de /admin 
-un lien sera rajouter prochainement pour acceder directement à cette page
+page d'accueil affichant l'enssemble des produits créer
+page de gestion disponible permettant l'edition, la suppression et la creation de produit
