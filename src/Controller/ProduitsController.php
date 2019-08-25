@@ -42,10 +42,10 @@ class ProduitsController extends AbstractController
     public function index(): Response
     {
 
-        /*$marque1 = new Marque();
-        $marque1->setNom("Yamu");
+       /* $marque1 = new Marque();
+        $marque1->setNom("Omen");
 
-        $produit = new Produit();
+        /*$produit = new Produit();
 
         $produit->setNom("cafetiere")
             ->setNom("Machine à café")
@@ -58,7 +58,7 @@ class ProduitsController extends AbstractController
         $entityManager->persist($marque1);
         $entityManager->persist($produit);
 
-        $entityManager->flush();*/
+        $entityManager->flush();
 
         /* charger repository sans wiring
         $repo = $this->getDoctrine()->getRepository(Produit::class); 
