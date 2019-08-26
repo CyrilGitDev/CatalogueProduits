@@ -5,7 +5,9 @@ namespace App\Repository;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Query;
+use App\Entity\ProduitRecherche;
 /**
  * @method Produit|null find($id, $lockMode = null, $lockVersion = null)
  * @method Produit|null findOneBy(array $criteria, array $orderBy = null)
@@ -47,4 +49,51 @@ class ProduitRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     *  @return Query
+     */
+    public function findAllProduitRecherche(ProduitRecherche $recherche): Query
+    {
+
+        $query = $this->findProduit();
+
+        if ($recherche->getMaxPrix())
+        {
+            $query = $query
+                ->andWhere('p.prix <= :maxPrix')
+                ->setParameter('maxPrix', $recherche->getMaxPrix());
+        }
+
+        if ($recherche->getMarqueRechercher())
+        {
+            $query = $query
+                ->andWhere('p.marque = :marqueRechercher')
+                ->setParameter('marqueRechercher', $recherche->getMarqueRechercher());
+        }
+
+        if ($recherche->getDate())
+        {
+            $query = $query
+                ->andWhere('p.dateAjout <= :date')
+                ->setParameter('date', $recherche->getDate());
+        }
+
+        return $query->getQuery();
+    }
+
+    /**
+     *  @return Query
+     */
+    public function findAllProduit(): Query
+    {
+        return $this->findProduit()
+            ->getQuery();
+    }
+
+    private function findProduit(): QueryBuilder
+    {
+        return $this->createQueryBuilder('p');
+            /*->where('p.prix < 0');*/
+    }
 }

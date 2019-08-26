@@ -3,12 +3,36 @@
 {% block title 'Annonce' %}
 
 {% block body %}
-    <div class="jumbotron text-center">
+<div class="jumbotron text-center">
 
         <h1> Annonce produit </h1>
 
         <p> annonce de diferent produit </p>
     </div>
+    <div class="jumbotron"> 
+    <div class="container">
+        {{ form_start(form) }}
+            <div class = "form-row">
+                <div class="col">
+                    {{ form_row(form.maxPrix) }}
+                </div>
+            
+                {#<div class="col">
+                    {{ form_row(form.marqueRechercher) }}
+                </div>#}
+                
+                <div class="col">
+                    {{ form_row(form.date) }}
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">Rechercher</button>.
+                </div>
+            </div>
+        {{ form_end(form) }}
+        </div>
+    </div>
+
+
     <div class="container">
     </div>
 
@@ -31,5 +55,10 @@
                 </div>
             {% endfor%}
         </div>
+
+        <div class="pagination">
+            {{ knp_pagination_render(produits) }}
+        </div>
+
     </div>
 {% endblock %}

@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Marque;
 use App\Entity\Produit;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProduitsController extends AbstractController
 {
@@ -39,8 +40,9 @@ class ProduitsController extends AbstractController
     **/
 
     /*wiring directement dans l'index*/
-    public function index(): Response
+    public function index(Request $request): Response
     {
+
 
        /* $marque1 = new Marque();
         $marque1->setNom("Omen");

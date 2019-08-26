@@ -6,6 +6,10 @@ use App\Entity\Marque;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Query;
+use App\Entity\ProduitRecherche;
+
 /**
  * @method Marque|null find($id, $lockMode = null, $lockVersion = null)
  * @method Marque|null findOneBy(array $criteria, array $orderBy = null)
@@ -47,4 +51,46 @@ class MarqueRepository extends ServiceEntityRepository
         ;
     }
     */
+
+/*
+     /**
+     *  @return Query
+     */
+    /*public function findAllMarqueRecherche(MarqueRecherche $recherche): Query
+    {
+
+        $query = $this->findMarque();
+
+        if ($recherche->getMarqueRechercher())
+        {
+            $query = $query
+                ->andWhere('p.nom <= :marqueRechercher')
+                ->setParameter('marqueRechercher', $recherche->getMarqueRechercher());
+        }
+
+        /*if ($recherche->getMarqueRechercher())
+        {
+            $query = $query
+                ->andWhere('p.marque = :marqueRechercher')
+                ->setParameter('marqueRechercher', $recherche->getMarqueRechercher($recherche));
+        }*/
+
+    
+        /*return $query->getQuery();
+    }
+
+    /**
+     *  @return Query
+     */
+    /*public function findAllProduit(): Query
+    {
+        return $this->findProduit()
+            ->getQuery();
+    }
+
+    private function findMarque(): QueryBuilder
+    {
+        return $this->createQueryBuilder('p');
+            /*->where('p.prix < 0');*//*
+    }*/
 }
