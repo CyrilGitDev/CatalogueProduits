@@ -42,36 +42,6 @@ class ProduitsController extends AbstractController
     /*wiring directement dans l'index*/
     public function index(Request $request): Response
     {
-
-
-       /* $marque1 = new Marque();
-        $marque1->setNom("Omen");
-
-        /*$produit = new Produit();
-
-        $produit->setNom("cafetiere")
-            ->setNom("Machine à café")
-            ->setPrix(15)
-            ->setMarque($marque1)
-            ->setReference("000001");
-
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $entityManager->persist($marque1);
-        $entityManager->persist($produit);
-
-        $entityManager->flush();
-
-        /* charger repository sans wiring
-        $repo = $this->getDoctrine()->getRepository(Produit::class); 
-        dump($repo);*/
-       
-        /*edit valeur de produit ds la base 
-        $produit = $this -> repo->findAll();
-        //dump($produit);
-       
-       /* $produit[0]->setPrix(15.2);
-        $this->manager->flush();*/
         return $this->render('index.html.twig', [
             'current_menu' => 'produits'
         ]);

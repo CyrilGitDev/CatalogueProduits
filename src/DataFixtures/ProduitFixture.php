@@ -27,8 +27,7 @@ class ProduitFixture extends Fixture
             $manager->persist($marque);
             $manager->persist($produit);
         }
-        // $product = new Product();
-        // $manager->persist($product);
+       
 
         $manager->flush();
     }

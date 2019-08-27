@@ -44,9 +44,6 @@ class ProduitRechercheType extends AbstractType
             ->add('dateChercher', DateTimeType::class,[
                 'required' => false,
                 'label' => false,
-                'attr' => [
-                    'placeholder' => 'Date'
-                ]
             ]) 
         ;
     }

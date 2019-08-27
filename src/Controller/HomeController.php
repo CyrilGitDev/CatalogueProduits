@@ -41,19 +41,10 @@ class HomeController extends AbstractController
 
     public function index(ProduitRepository $repo, Request $request, PaginatorInterface $paginator): Response
     {
-       /* $rechercheMarque = new MarqueRecherche();
-        $formMarque = $this->createForm(MarqueRechercheType::class, $rechercheMarque);
-        $formMarque->handleRequest($request);*/
+      
         $recherche = new ProduitRecherche();
         $form = $this->createForm(ProduitRechercheType::class, $recherche);
-        $form->handleRequest($request);
-
-        /*$marque = $paginator->paginate(
-            $this->repo->findAllMarqueRecherche($rechercheMarque),
-            $request->query->getInt('page', 1),
-            33
-        );*/
-        
+        $form->handleRequest($request);      
        
         $produit = $paginator->paginate(
             $this->repo->findAllProduitRecherche($recherche),
@@ -64,33 +55,10 @@ class HomeController extends AbstractController
         return $this->render('pages/home.html.twig',[
             'current_menu' => 'produits',
             'produits' => $produit,
-           /* 'produits' => $produit,*/
+      
             'form' => $form->createView(),
-            /*'formMarque' => $formMarque->createView()*/
+            
         ]); 
 
     }
 }
-
-/*<div class="jumbotron"> 
-    <div class="container">
-        {{ form_start(form) }}
-            <div class = "form-row">
-                <div class="col">
-                    {{ form_row(form.maxPrix) }}
-                </div>
-            
-                <div class="col">
-                    {{ form_row(form.marqueRechercher) }}
-                </div>
-                
-                <div class="col">
-                    {{ form_row(form.date) }}
-                </div>
-                <div class="col">
-                    <button class="btn btn-primary">Rechercher</button>.
-                </div>
-            </div>
-        {{ form_end(form) }}
-        </div>
-    </div>*/

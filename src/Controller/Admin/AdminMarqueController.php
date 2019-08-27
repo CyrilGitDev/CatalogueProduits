@@ -58,59 +58,5 @@ class AdminMarqueController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-/*
-    /**
-    * @Route("/admin/{id}", name="admin.produit.edit", methods="GET|POST")
-    * @param Produit $produit
-    * @param Request $request
-    * @return \Symfony\Component\HttpFoundation\Response
-    **/
-    /*public function edit(Produit $produit, Request $request)
-    {
-        $form = $this->createForm(ProduitType::class, $produit);
-        $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-                $this->manager->flush();
-                $this->addFlash('success', 'modification apporté avec succès');
-
-                return $this->redirectToRoute('admin.produit.index');
-        }
-
-        return $this->render('produits/edit.html.twig', [
-            'produit' => $produit,
-            'form' => $form->createView()
-        ]);
-      
-    }
-    /*
-     /**
-    * @Route("/admin/{id}", name="admin.produit.delete", methods="DELETE")
-    * @param Produit $produit
-    * @return \Symfony\Component\HttpFoundation\Response
-    **/
-    /*public function delete(Produit $produit)
-    {
-        $this->manager->remove($produit);
-        $this->manager->flush();
-        $this->addFlash('success', 'supprimé avec succès');
-        //return new Response('suprresion');
-        return $this->redirectToRoute('admin.produit.index');
-    }*/
-
-/*
-    /**
-     * @Route("/admin", name="adminPage")
-     * @return Response
-    **/
-
-    /*wiring directement dans l'index*/
-    /*public function adminPage(): Response
-    {
-        return $this->render('produits/index.html.twig', [
-            'current_menu' => 'produits'
-        ]);
-    }
-    */
 }

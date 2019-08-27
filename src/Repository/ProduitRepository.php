@@ -63,11 +63,7 @@ class ProduitRepository extends ServiceEntityRepository
         {
             $query = $query
                 ->andWhere('p.nom LIKE :nomProduit')
-                //->andWhere('p.nom LIKE \'' .$recherche. '\'')
-                //->andWhere($query->expr()->like('p.nom', $query->expr()->literal('%' . $recherche . '%')) )
-                //->setParameter('nomProduit', $recherche->getNomProduit());
-                //->setParameter('%'.$recherche.'%'->getNomProduit());
-            ->setParameter('nomProduit', '%'.$recherche.'%'/*->getNomProduit()*/);
+                ->setParameter('nomProduit', '%'.$recherche.'%');
         }
 
         if ($recherche->getMaxPrix())
@@ -80,17 +76,17 @@ class ProduitRepository extends ServiceEntityRepository
         if ($recherche->getMarqueRechercher())
         {
             $query = $query
-                ->andWhere('p.marque = :marqueRechercher')
-                //->setParameter('marqueRechercher', $recherche->getMarqueRechercher());
-                ->setParameter('marqueRechercher', '%'.$recherche.'%'/*->getMarqueRechercher()*/);
+                ->innerJoin('p.marque', 'm')
+                ->addSelect('m')
+                ->andWhere('p.id = :marqueRechercher')
+                ->setParameter('marqueRechercher', $recherche->getMarqueRechercher());
         }
 
         if ($recherche->getdateChercher())
         {
             $query = $query
                 ->andWhere('p.dateAjout <= :dateChercher')
-                //->setParameter('dateChercher', new \DateTime($recherche->getdateChercher()));
-            ->setParameter('dateChercher', '%'.$recherche.'%'/*->getNomProduit()*/);
+            ->setParameter('dateChercher', $recherche->getNomProduit());
         }
 
         return $query->getQuery();
