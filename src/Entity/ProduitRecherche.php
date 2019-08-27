@@ -7,6 +7,13 @@ use App\Entity\Marque;
 
 class ProduitRecherche
 {
+
+
+/**
+ * @var string|null
+ */
+private $nomProduit;
+
 /**
  * @var float|null
  */
@@ -18,9 +25,9 @@ private $maxPrix;
 private $marqueRechercher;
 
 /**
- * @var datetime|null
+ * @var DateTime|null
  */
-private $date;
+private $dateChercher;
 
 
 /**
@@ -38,6 +45,24 @@ public function getMaxPrix(): ?float
 public function setMaxPrix(?int $maxPrix): ProduitRecherche
 {
     $this->maxPrix = $maxPrix;
+    return $this;
+}
+
+/**
+ * @return string|null
+ */
+public function getNomProduit(): ?string
+{
+    return $this->nomProduit;
+}
+
+/**
+ * @param string|null $nomProduit
+ * @return ProduitRecherche
+ */
+public function setNomProduit(?string $nomProduit): ProduitRecherche
+{
+    $this->nomProduit = $nomProduit;
     return $this;
 }
 
@@ -63,24 +88,27 @@ public function setMarqueRechercher(?Marque $marqueRechercher): ProduitRecherche
 
 
 /**
- * @return datetime|null
+ * @return DateTime|null
  */
-public function getDate(): ?Date
+public function getdateChercher(): ?DateTime
 {
-    return $this->date;
+    return $this->dateChercher;
 }
 
 /**
- * @param datetime|null $date
+ * @param DateTime|null $dateChercher
  * @return ProduitRecherche
  */
-public function setDate(?Date $date): ProduitRecherche
+public function setdateChercher(?Date $dateChercher): ProduitRecherche
 {
-    $this->date = $date;
+    $this->dateChercher = $dateChercher;
     return $this;
 }
 
+public function __toString(){
 
+    return $this->nomProduit;
+}
 
 }
 

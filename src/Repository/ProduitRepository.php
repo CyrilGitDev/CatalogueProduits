@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
 use App\Entity\ProduitRecherche;
+use App\Repository;
 /**
  * @method Produit|null find($id, $lockMode = null, $lockVersion = null)
  * @method Produit|null findOneBy(array $criteria, array $orderBy = null)
@@ -58,6 +59,17 @@ class ProduitRepository extends ServiceEntityRepository
 
         $query = $this->findProduit();
 
+        if ($recherche->getNomProduit())
+        {
+            $query = $query
+                ->andWhere('p.nom LIKE :nomProduit')
+                //->andWhere('p.nom LIKE \'' .$recherche. '\'')
+                //->andWhere($query->expr()->like('p.nom', $query->expr()->literal('%' . $recherche . '%')) )
+                //->setParameter('nomProduit', $recherche->getNomProduit());
+                //->setParameter('%'.$recherche.'%'->getNomProduit());
+            ->setParameter('nomProduit', '%'.$recherche.'%'/*->getNomProduit()*/);
+        }
+
         if ($recherche->getMaxPrix())
         {
             $query = $query
@@ -69,14 +81,16 @@ class ProduitRepository extends ServiceEntityRepository
         {
             $query = $query
                 ->andWhere('p.marque = :marqueRechercher')
-                ->setParameter('marqueRechercher', $recherche->getMarqueRechercher());
+                //->setParameter('marqueRechercher', $recherche->getMarqueRechercher());
+                ->setParameter('marqueRechercher', '%'.$recherche.'%'/*->getMarqueRechercher()*/);
         }
 
-        if ($recherche->getDate())
+        if ($recherche->getdateChercher())
         {
             $query = $query
-                ->andWhere('p.dateAjout <= :date')
-                ->setParameter('date', $recherche->getDate());
+                ->andWhere('p.dateAjout <= :dateChercher')
+                //->setParameter('dateChercher', new \DateTime($recherche->getdateChercher()));
+            ->setParameter('dateChercher', '%'.$recherche.'%'/*->getNomProduit()*/);
         }
 
         return $query->getQuery();
@@ -94,6 +108,6 @@ class ProduitRepository extends ServiceEntityRepository
     private function findProduit(): QueryBuilder
     {
         return $this->createQueryBuilder('p');
-            /*->where('p.prix < 0');*/
+
     }
 }
